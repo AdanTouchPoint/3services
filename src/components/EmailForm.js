@@ -5,10 +5,12 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Col from "react-bootstrap/cjs/Col";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
-
-const EmailForm = ({mps, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
+import Loader from "react-loader-spinner";
+const EmailForm = ({mps,setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false)
+    const [showLoadSpin, setShowLoadSpin] = useState(false)
+
    //  const text = `I live in your electorate and wanted to let you know that I'm tired of wasteful government  spending.
    // My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it.
    // As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste.
@@ -42,6 +44,12 @@ const { email, name } = emailData
         }
         setError(false)
         const  payload = await axios.post('https://sendemail-service.herokuapp.com/email',{dataUser,emailData})
+        await setShowLoadSpin(false)
+        if (payload.status === 200 ) {
+                setShowEmailForm(true)
+                setShowThankYou(false)
+                dataUser.id= ''
+}
 
     }
     const back = e => {
@@ -58,7 +66,7 @@ const { email, name } = emailData
             {error ? <Alert variant={'danger'}>
                 All fields are required!
             </Alert> : null}
-            <Form noValidate validated={validated}>
+            <Form  onSubmit={send} noValidate validated={validated}>
                 <div className={'formEmail'}>
                     <Form.Group as={Col} controlId="name">
                         <Form.Label>
@@ -141,10 +149,19 @@ const { email, name } = emailData
                         name="text"
                     />
                 </Form.Group>
+                <Loader
+                    visible={showLoadSpin}
+                    type="Puff"
+                    color="#000000"
+                    height={100}
+                    width={100}
+                    timeout={3000} //3 secs
+                />
             </Form>
             {/*SEPARAR BUTTONS*/}
             <div className={'container'} style={{textAlign:'center'}}>
                 <Button
+                    type={'submit'}
                     style={{margin:'20px'}}
                     variant={'dark'}
                     onClick={send}>

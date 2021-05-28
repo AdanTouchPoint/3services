@@ -9,6 +9,7 @@ import List from './List'
 import icon from '../assets/tw.png'
 import cryptoRandomString from "crypto-random-string";
 import EmailForm from "./EmailForm";
+import ThankYou from "./ThankYou";
 
 
 
@@ -20,6 +21,7 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp,setEmai
     // const [yourMP, setYourMP] = useState([])
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false)
+    const [showThankYou, setShowThankYou] = useState (true)
     // const [tweetText, setTweetText] = useState({})
     const handleChange = e => {
         setDataUser({
@@ -164,6 +166,7 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp,setEmai
                 </div>
             </div>
             <EmailForm
+                setShowThankYou={setShowThankYou}
                 setShowFindForm={setShowFindForm}
                 setShowEmailForm={setShowEmailForm}
                 showEmailForm={showEmailForm}
@@ -172,10 +175,16 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp,setEmai
                 setEmailData={setEmailData}
                 setDataUser={setDataUser}
             />
+            <ThankYou
+                emailData={emailData}
+                setDataUser={setDataUser}
+                setEmailData={setEmailData}
+                setShowFindForm={setShowFindForm}
+                setShowThankYou={setShowThankYou}
+                showThankYou={showThankYou}/>
         </div>
     )
 }
 export default MainForm;
-
 
 
