@@ -10,18 +10,16 @@ import icon from '../assets/tw.png'
 import cryptoRandomString from "crypto-random-string";
 import EmailForm from "./EmailForm";
 import ThankYou from "./ThankYou";
-import CardImg from "react-bootstrap/cjs/CardImg";
 import Card from "react-bootstrap/cjs/Card";
+
 const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEmailData, emailData}) => {
     const [showLoadSpin, setShowLoadSpin] = useState(false)
     const [showList, setShowList] = useState(true)
     const [showFindForm, setShowFindForm] = useState(false)
     const [showEmailForm, setShowEmailForm] = useState(true)
-    // const [yourMP, setYourMP] = useState([])
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false)
     const [showThankYou, setShowThankYou] = useState(true)
-    // const [tweetText, setTweetText] = useState({})
     const handleChange = e => {
         e.preventDefault();
         setDataUser({
@@ -31,11 +29,13 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
         console.log(e.target.value)
         console.log(dataUser)
     }
-    const {userName, zipCode, emailUser, id} = dataUser;
+    const { zipCode, emailUser } = dataUser;
 
     const click = async e => {
         e.preventDefault();
+        // load spin
         setShowLoadSpin(true)
+//validation form -->
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.preventDefault();
@@ -48,6 +48,7 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
             return
         }
         setError(false)
+//---> ends validation form
         const randomId = cryptoRandomString({type: 'distinguishable', length: 10})
         dataUser.id = randomId;
         const response = await axios.post(`https://sendemail-service.herokuapp.com/sendtwit`, {dataUser})
@@ -81,20 +82,16 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
                      </Card.ImgOverlay>
             </Card>
             <div className={'container'} style={{padding: '35px'}}>
-
                 Lorem ipsum dolor sit amet consectetur adipiscing elit habitant montes nibh id dictumst, facilisi quam
                 ullamcorper felis ante class eros tortor velit nisi. Facilisis conubia laoreet vestibulum nostra tempus
                 fusce sodales.
-
             </div>
             <div style={{maxWidth: '1150px', width: '100%', backgroundColor: '#f4f4f4'}}>
                 <div hidden={showFindForm} className={'container'} style={{textAlign: 'center', padding: '30px'}}>
-
                     {error ? <Alert variant={'danger'}>
                         All fields are required!
                     </Alert> : null}
                     <Form onSubmit={click} noValidate validated={validated}>
-
                         <h3>Find you local MP here:</h3>
                         <Form.Group>
                             <Form.Control
@@ -132,7 +129,7 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
                             color="#000000"
                             height={100}
                             width={100}
-                            timeout={5000} //3 secs
+                            timeout={10000} //10 secs
                         /> : null }
                     </Form>
 
@@ -152,7 +149,6 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
                                     emailData={emailData}
                                     setEmailData={setEmailData}
                                     dataUser={dataUser}
-                                    // tweetText={tweetText}
                                     mps={mps}
                                     key={index}
                                 />)
@@ -170,7 +166,6 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
                                         emailData={emailData}
                                         setEmailData={setEmailData}
                                         dataUser={dataUser}
-                                        // tweetText={tweetText}
                                         mps={mps}
                                         key={index}
                                     />

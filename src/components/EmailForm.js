@@ -7,15 +7,10 @@ import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import Loader from "react-loader-spinner";
 
-const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
+const EmailForm = ({ setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false)
     const [showLoadSpin, setShowLoadSpin] = useState(false)
-
-    //  const text = `I live in your electorate and wanted to let you know that I'm tired of wasteful government  spending.
-    // My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it.
-    // As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste.
-    // Thank you.`
     const handleChange = e => {
         e.preventDefault()
         setDataUser({
@@ -57,12 +52,8 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
         setShowFindForm(false)
         setShowEmailForm(true)
     }
-    useEffect(() => {
-        console.log(dataUser)
-    }, [dataUser])
     return (
         <div className={'emailContainer'} hidden={showEmailForm}>
-            {/*<p style={{textAlign: 'center'}}> FROM: add your full name and surname</p>*/}
             {error ? <Alert variant={'danger'}>
                 All fields are required!
             </Alert> : null}
@@ -70,10 +61,7 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                 <div className={'formEmail'}>
                     <Col>
                         <Form.Group
-
-                            controlId="name"
-
-                        >
+                            controlId="name">
                             <Form.Label>
                                 *First name and last name
                             </Form.Label>
@@ -88,15 +76,11 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                     </Col>
                     <Col>
                         <Form.Group
-
-                            controlId="email"
-
-                        >
+                            controlId="email">
                             <Form.Label>
                                 *Email
                             </Form.Label>
                             <Form.Control
-
                                 type="email"
                                 placeholder={"email"}
                                 onChange={handleChange}
@@ -110,13 +94,11 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                         TO: REPRESENTATIVE INFORMATION
                     </Form.Label>
                 </Col>
-                {/*<div style={{maxHeight: '38', height: '100%'}}>TO: REPRESENTATIVE INFORMATION</div>*/}
                 <div className={'formEmail'}>
                     <Col>
                         <Form.Group>
                             <Form.Control
                                 as={'input'}
-                                // inline
                                 readOnly
                                 type="text"
                                 placeholder={emailData.name}
@@ -128,7 +110,6 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                         <Form.Group>
                             <Form.Control
                                 as={'input'}
-                                // inline
                                 readOnly
                                 type="text"
                                 placeholder={`${emailData.city} - ${emailData.state}`}
@@ -137,11 +118,8 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                         </Form.Group>
                     </Col>
                     <Col>
-                        <InputGroup
-
-                        >
+                        <InputGroup>
                             <Form.Control
-                                // inline
                                 readOnly
                                 type="text"
                                 name="cp"
@@ -166,7 +144,6 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                 <Col>
                     <Form.Group style={{paddingTop: '20px'}}>
                         <Form.Control
-                            // plainText
                             as="textarea"
                             rows={8}
                             defaultValue={dataUser.text}
@@ -181,10 +158,9 @@ const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser
                     color="#000000"
                     height={100}
                     width={100}
-                    timeout={3000} //3 secs
+                    timeout={5000} //5 secs
                 />
             </Form>
-            {/*SEPARAR BUTTONS*/}
             <div className={'container'} style={{textAlign: 'center'}}>
                 <Button
                     type={'submit'}
