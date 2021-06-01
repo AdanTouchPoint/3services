@@ -11,7 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.text{
+  font-size: 50px;
+}
+.text2{
+  font-size: 35px;
+}
+.buttonsContainer{
+  display:flex;
+  padding:7px 7px;
+  background-color: white;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.buttons{
+  display: block;
 
+}
 .formEmail {
 display: flex;
 }
@@ -26,5 +42,15 @@ display: flex;
   }
   .emailContainer{
     padding: 25px;
+  }
+  .buttonsContainer {
+    text-align: center;
+    display: block;
+  }
+  .text{
+    font-size: 25px;
+  }
+  .text2 {
+    font-size: 25px;
   }
 }

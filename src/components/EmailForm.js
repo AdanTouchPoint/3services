@@ -15,7 +15,6 @@ const EmailForm = ({mps,setShowThankYou, setShowFindForm, dataUser, setDataUser,
    // My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it.
    // As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste.
    // Thank you.`
-const { email, name } = emailData
     const handleChange = e => {
         e.preventDefault()
         setDataUser({
@@ -94,33 +93,30 @@ const { email, name } = emailData
                 </div>
                 <div style={{maxHeight:'38',height:'100%'}}>TO: REPRESENTATIVE INFORMATION</div>
                 <div className={'formEmail'}>
-                    <Form.Group as={Col} controlId="nameTo">
+                    <Form.Group as={Col}>
                         <Form.Control
                             as={'input'}
-                            inline
-
+                            // inline
                             readOnly
                             type="text"
                             placeholder={emailData.name}
                             name="nameTo"
                         />
                     </Form.Group>
-                    <Form.Group as={Col} controlId="nameTo">
+                    <Form.Group as={Col} >
                         <Form.Control
                             as={'input'}
-                            inline
+                            // inline
                             readOnly
-
                             type="text"
                             placeholder={`${emailData.city} - ${emailData.state}`}
                             name="state-city"
                         />
                     </Form.Group>
-                    <InputGroup as={Col} controlId="cp">
+                    <InputGroup as={Col} >
                         <Form.Control
-                            inline
+                            // inline
                             readOnly
-
                             type="text"
                             name="cp"
                             placeholder={dataUser.zipCode}
@@ -141,7 +137,7 @@ const { email, name } = emailData
                 </div>
                 <Form.Group style={{paddingTop:'20px'}}>
                     <Form.Control
-                        plainText
+                        // plainText
                         as="textarea"
                         rows={8}
                         defaultValue={dataUser.text}

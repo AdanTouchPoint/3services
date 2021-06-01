@@ -9,23 +9,25 @@ const List = ({mps, dataUser, emailData, setEmailData,showFindForm,setShowFindFo
 
     const click = e => {
         e.preventDefault()
-        setEmailData(mps)
+        setEmailData({
+            ...dataUser,
+            ...mps})
         setShowEmailForm(false)
         setShowFindForm(true)
 
     }
     return (
-        <div>
-        <div className={'container'}
-             style={{ padding:'7px 7px', display: "flex", backgroundColor: 'white', justifyContent: 'space-between', marginBottom: '10px'}}>
+
+        <div className={'buttonsContainer'}
+             >
             <div style={{paddingTop: '10px'}}>
-                <p>
+                <div>
                     <h3> {mps.name} </h3>
                     <p>For: {mps.address}, City: {mps.city}, -State: {mps.state}</p>
-                </p>
+                </div>
             </div>
-            <div style={{display: 'flex', flexDirection: 'column'}}>
-                <div className={'container'} style={{padding: '5px'}}>
+            <div className={'buttons'}>
+                <div  style={{padding: '5px'}}>
                     {mps.twitter !== 'NULL' ?
                         <Button
                             style={{maxWidth: '110px', width: '100%'}}
@@ -46,11 +48,10 @@ const List = ({mps, dataUser, emailData, setEmailData,showFindForm,setShowFindFo
                                 style={{maxWidth: '110px', width: '100%'}}
                                 size={'sm'}
                                 variant={'dark'}
-                                href={`https://twitter.com/intent/tweet?text=${tweetText}`}
                                 target={"blank"}
                                 onClick={click}
                             >
-                                SEND email
+                                SEND EMAIL
                             </Button> :
                             <p>No Email</p>
                     }
@@ -62,7 +63,7 @@ const List = ({mps, dataUser, emailData, setEmailData,showFindForm,setShowFindFo
                                 style={{maxWidth: '110px', width: '100%'}}
                                 size={'sm'}
                                 variant={'dark'}
-                                href={`tel:+61${emailData.phone}`}
+                                href={`tel:+61${mps.phone}`}
                                 target={"blank"}
                             >
                                 CALL IT
@@ -73,7 +74,7 @@ const List = ({mps, dataUser, emailData, setEmailData,showFindForm,setShowFindFo
             </div>
                </div>
 
-        </div>
+
     )
 }
 
