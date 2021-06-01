@@ -6,15 +6,16 @@ import Col from "react-bootstrap/cjs/Col";
 import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import Loader from "react-loader-spinner";
-const EmailForm = ({mps,setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
+
+const EmailForm = ({mps, setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false)
     const [showLoadSpin, setShowLoadSpin] = useState(false)
 
-   //  const text = `I live in your electorate and wanted to let you know that I'm tired of wasteful government  spending.
-   // My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it.
-   // As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste.
-   // Thank you.`
+    //  const text = `I live in your electorate and wanted to let you know that I'm tired of wasteful government  spending.
+    // My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it.
+    // As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste.
+    // Thank you.`
     const handleChange = e => {
         e.preventDefault()
         setDataUser({
@@ -37,18 +38,18 @@ const EmailForm = ({mps,setShowThankYou, setShowFindForm, dataUser, setDataUser,
         }
         setValidated(true);
         if (//firstName.trim() === '' || lastName.trim() === '' || //
-            userName.trim() === '' ) {
+            userName.trim() === '') {
             setError(true)
             return
         }
         setError(false)
-        const  payload = await axios.post('https://sendemail-service.herokuapp.com/email',{dataUser,emailData})
+        const payload = await axios.post('https://sendemail-service.herokuapp.com/email', {dataUser, emailData})
         await setShowLoadSpin(false)
-        if (payload.status === 200 ) {
-                setShowEmailForm(true)
-                setShowThankYou(false)
-                dataUser.id= ''
-}
+        if (payload.status === 200) {
+            setShowEmailForm(true)
+            setShowThankYou(false)
+            dataUser.id = ''
+        }
 
     }
     const back = e => {
@@ -56,95 +57,124 @@ const EmailForm = ({mps,setShowThankYou, setShowFindForm, dataUser, setDataUser,
         setShowFindForm(false)
         setShowEmailForm(true)
     }
-    useEffect(()=> {
+    useEffect(() => {
         console.log(dataUser)
-    },[dataUser])
+    }, [dataUser])
     return (
         <div className={'emailContainer'} hidden={showEmailForm}>
             {/*<p style={{textAlign: 'center'}}> FROM: add your full name and surname</p>*/}
             {error ? <Alert variant={'danger'}>
                 All fields are required!
             </Alert> : null}
-            <Form  onSubmit={send} noValidate validated={validated}>
+            <Form onSubmit={send} noValidate validated={validated}>
                 <div className={'formEmail'}>
-                    <Form.Group as={Col} controlId="name">
-                        <Form.Label>
-                            *First name and last name
-                        </Form.Label>
-                        <Form.Control
-                            type="text"
-                            placeholder="Name"
-                            name="userName"
-                            onChange={handleChange}
-                            required
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="email">
-                        <Form.Label>
-                            *Email
-                        </Form.Label>
-                        <Form.Control
-                            type="email"
-                            placeholder={"email"}
-                            onChange={handleChange}
-                            name="emailUser"
-                        />
-                    </Form.Group>
-                </div>
-                <div style={{maxHeight:'38',height:'100%'}}>TO: REPRESENTATIVE INFORMATION</div>
-                <div className={'formEmail'}>
-                    <Form.Group as={Col}>
-                        <Form.Control
-                            as={'input'}
-                            // inline
-                            readOnly
-                            type="text"
-                            placeholder={emailData.name}
-                            name="nameTo"
-                        />
-                    </Form.Group>
-                    <Form.Group as={Col} >
-                        <Form.Control
-                            as={'input'}
-                            // inline
-                            readOnly
-                            type="text"
-                            placeholder={`${emailData.city} - ${emailData.state}`}
-                            name="state-city"
-                        />
-                    </Form.Group>
-                    <InputGroup as={Col} >
-                        <Form.Control
-                            // inline
-                            readOnly
-                            type="text"
-                            name="cp"
-                            placeholder={dataUser.zipCode}
-                        />
-                    </InputGroup>
-                </div>
-                <div style={{paddingTop:'5px'}}>
-                    <Form.Label>
-                        Subject
-                    </Form.Label>
-                    <Form.Control
-                        as="input"
-                        type="text"
-                        name="subject"
-                        defaultValue={'Time to End Wasteful Spending'}
-                    />
+                    <Col>
+                        <Form.Group
 
+                            controlId="name"
+
+                        >
+                            <Form.Label>
+                                *First name and last name
+                            </Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="Name"
+                                name="userName"
+                                onChange={handleChange}
+                                required
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group
+
+                            controlId="email"
+
+                        >
+                            <Form.Label>
+                                *Email
+                            </Form.Label>
+                            <Form.Control
+
+                                type="email"
+                                placeholder={"email"}
+                                onChange={handleChange}
+                                name="emailUser"
+                            />
+                        </Form.Group>
+                    </Col>
                 </div>
-                <Form.Group style={{paddingTop:'20px'}}>
-                    <Form.Control
-                        // plainText
-                        as="textarea"
-                        rows={8}
-                        defaultValue={dataUser.text}
-                        onChange={handleChange}
-                        name="text"
-                    />
-                </Form.Group>
+                <Col>
+                    <Form.Label>
+                        TO: REPRESENTATIVE INFORMATION
+                    </Form.Label>
+                </Col>
+                {/*<div style={{maxHeight: '38', height: '100%'}}>TO: REPRESENTATIVE INFORMATION</div>*/}
+                <div className={'formEmail'}>
+                    <Col>
+                        <Form.Group>
+                            <Form.Control
+                                as={'input'}
+                                // inline
+                                readOnly
+                                type="text"
+                                placeholder={emailData.name}
+                                name="nameTo"
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <Form.Group>
+                            <Form.Control
+                                as={'input'}
+                                // inline
+                                readOnly
+                                type="text"
+                                placeholder={`${emailData.city} - ${emailData.state}`}
+                                name="state-city"
+                            />
+                        </Form.Group>
+                    </Col>
+                    <Col>
+                        <InputGroup
+
+                        >
+                            <Form.Control
+                                // inline
+                                readOnly
+                                type="text"
+                                name="cp"
+                                placeholder={dataUser.zipCode}
+                            />
+                        </InputGroup>
+                    </Col>
+                </div>
+                <div style={{paddingTop: '5px'}}>
+                    <Col>
+                        <Form.Label>
+                            Subject
+                        </Form.Label>
+                        <Form.Control
+                            as="input"
+                            type="text"
+                            name="subject"
+                            defaultValue={'Time to End Wasteful Spending'}
+                        />
+                    </Col>
+                </div>
+                <Col>
+                    <Form.Group style={{paddingTop: '20px'}}>
+                        <Form.Control
+                            // plainText
+                            as="textarea"
+                            rows={8}
+                            defaultValue={dataUser.text}
+                            onChange={handleChange}
+                            name="text"
+                        />
+                    </Form.Group>
+                </Col>
                 <Loader
                     visible={showLoadSpin}
                     type="Puff"
@@ -155,16 +185,16 @@ const EmailForm = ({mps,setShowThankYou, setShowFindForm, dataUser, setDataUser,
                 />
             </Form>
             {/*SEPARAR BUTTONS*/}
-            <div className={'container'} style={{textAlign:'center'}}>
+            <div className={'container'} style={{textAlign: 'center'}}>
                 <Button
                     type={'submit'}
-                    style={{margin:'20px'}}
+                    style={{margin: '20px'}}
                     variant={'dark'}
                     onClick={send}>
                     Send
                 </Button>
                 <Button
-                    style={{margin:'20px'}}
+                    style={{margin: '20px'}}
                     variant={'dark'}
                     onClick={back}>
                     Back
