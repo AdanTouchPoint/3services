@@ -130,15 +130,18 @@ const EmailForm = ({ setShowThankYou, setShowFindForm, dataUser, setDataUser, sh
                 </div>
                 <div style={{paddingTop: '5px'}}>
                     <Col>
+                        <Form.Group >
                         <Form.Label>
                             Subject
                         </Form.Label>
                         <Form.Control
+                            onChange={handleChange}
                             as="input"
                             type="text"
                             name="subject"
                             defaultValue={'Time to End Wasteful Spending'}
                         />
+                        </Form.Group>
                     </Col>
                 </div>
                 <Col>
