@@ -9,7 +9,7 @@ function App() {
         userName: '',
         zipCode: '',
         emailUser: '',
-        subject:'',
+        subject:'Time to End Wasteful Spending',
         text:`
      I live in your electorate and wanted to let you know that Im tired of wasteful government  spending. My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it. As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste. Thank you.`
     })
