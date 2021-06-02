@@ -11,6 +11,7 @@ import cryptoRandomString from "crypto-random-string";
 import EmailForm from "./EmailForm";
 import ThankYou from "./ThankYou";
 import Card from "react-bootstrap/cjs/Card";
+import {Link, animateScroll as scroll} from "react-scroll";
 
 const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEmailData, emailData}) => {
     const [showLoadSpin, setShowLoadSpin] = useState(false)
@@ -58,6 +59,7 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
         setMp(getMp)
         setShowLoadSpin(false)
         setShowList(false)
+        scroll.scrollToBottom();
 
     }
     return (
@@ -91,6 +93,15 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
                     {error ? <Alert variant={'danger'}>
                         All fields are required!
                     </Alert> : null}
+                    <Link
+                        activeClass="active"
+                        to="section1"
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                    >
+                    </Link>
                     <Form onSubmit={click} noValidate validated={validated}>
                         <h3>Find you local MP here:</h3>
                         <Form.Group>
