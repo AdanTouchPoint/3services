@@ -7,7 +7,7 @@ import axios from "axios";
 import Alert from "react-bootstrap/Alert";
 import Loader from "react-loader-spinner";
 
-const EmailForm = ({ setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
+const EmailForm = ({setShowThankYou, setShowFindForm, dataUser, setDataUser, showEmailForm, setShowEmailForm, emailData, setEmailData}) => {
     const [validated, setValidated] = useState(false);
     const [error, setError] = useState(false)
     const [showLoadSpin, setShowLoadSpin] = useState(false)
@@ -15,12 +15,12 @@ const EmailForm = ({ setShowThankYou, setShowFindForm, dataUser, setDataUser, sh
         e.preventDefault()
         setDataUser({
             ...dataUser,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.replace(/\n\r?/g, '<br/>' )
         })
         setEmailData({
             ...dataUser,
             ...emailData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value.replace(/\n\r?/g, '<br/>' )
         })
     }
     const {userName} = dataUser
@@ -130,17 +130,17 @@ const EmailForm = ({ setShowThankYou, setShowFindForm, dataUser, setDataUser, sh
                 </div>
                 <div style={{paddingTop: '5px'}}>
                     <Col>
-                        <Form.Group >
-                        <Form.Label>
-                            Subject
-                        </Form.Label>
-                        <Form.Control
-                            onChange={handleChange}
-                            as="input"
-                            type="text"
-                            name="subject"
-                            defaultValue={'Time to End Wasteful Spending'}
-                        />
+                        <Form.Group>
+                            <Form.Label>
+                                Subject
+                            </Form.Label>
+                            <Form.Control
+                                onChange={handleChange}
+                                as="input"
+                                type="text"
+                                name="subject"
+                                defaultValue={'Time to End Wasteful Spending'}
+                            />
                         </Form.Group>
                     </Col>
                 </div>
