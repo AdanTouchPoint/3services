@@ -82,9 +82,10 @@ const EmailForm = ({setShowThankYou, setShowFindForm, dataUser, setDataUser, sho
                             </Form.Label>
                             <Form.Control
                                 type="email"
-                                placeholder={"email"}
+                                placeholder={emailData.emailUser}
                                 onChange={handleChange}
                                 name="emailUser"
+                                readOnly
                             />
                         </Form.Group>
                     </Col>

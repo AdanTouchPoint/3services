@@ -9,9 +9,9 @@ function App() {
         userName: '',
         zipCode: '',
         emailUser: '',
-        subject:'Time to End Wasteful Spending',
-        text:`
-     I live in your electorate and wanted to let you know that Im tired of wasteful government  spending. My tax dollars are being spent on unnecessary government programs, subsidies,  and initiatives, and we must put an end to it. As a voter, this is my most important issue and I am urging you to work in Canberra towards eliminating waste. Thank you.`
+        subject:'The Subject Line is Pre-Filled and can be Edited',
+        text:'Users will see a pre-filled email and can edit it before sending. If the system administrator prefers, subject line and/or body text can made uneditable.'
+
     })
     const [mp, setMp] = useState([])
     const [senator, setSenator] = useState([])

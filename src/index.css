@@ -37,6 +37,9 @@ display: flex;
   padding:50px;
 
 }
+.card-img{
+  background-size: cover;
+}
 
 @media (max-width: 767px) {
   .formEmail {

@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Button from "react-bootstrap/cjs/Button";
 
 const List = ({mps, dataUser,  setEmailData,  setShowFindForm, setShowEmailForm}) => {
-    const tweetText = `.${mps.twitter}%2C+I%E2%80%99m+a+voter+in+your+electorate%2C+and+I+think+our+taxes+are+too+high%21+Australians+deserve+to+keep+more+of+their+own+money+and+I%E2%80%99m+asking+you+to+fight+in+Canberra+for+lower+taxes.+%0D%0A%0D%0ASent+from+%40AusTaxpayers%E2%80%99+Contact+Your+Politician+Platform.&original_referer=https://www.taxpayers.org.au/let-them-know-you-care`
+    const tweetText = `.${mps.twitter}`
     const click = e => {
         e.preventDefault()
         setEmailData({
@@ -28,12 +28,12 @@ const List = ({mps, dataUser,  setEmailData,  setShowFindForm, setShowEmailForm}
                             style={{maxWidth: '110px', width: '100%'}}
                             size={'sm'}
                             variant={'dark'}
-                            href={`https://twitter.com/intent/tweet?text=${tweetText}`}
+                            href={`https://twitter.com/intent/tweet?text=${tweetText} Tweets%20are%20pre-written%20and%20can%20be%20edited%20by%20users%20before%20posting.%20Links%2C%20hashtags%2C%20and%20handles%20can%20all%20be%20included%20in%20a%20tweet.`}
                             target={"blank"}
                         >
                             SEND TWEET
                         </Button> :
-                        <p>No Tweeter</p>
+                        <p style={{textAlign:'center'}}>No Twitter</p>
                     }
                 </div>
                 <div className={'container'} style={{padding: '5px'}}>

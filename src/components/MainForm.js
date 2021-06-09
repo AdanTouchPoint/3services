@@ -5,7 +5,7 @@ import Button from "react-bootstrap/cjs/Button";
 import Alert from "react-bootstrap/Alert";
 import axios from "axios";
 import List from './List'
-import mainimage from '../assets/20-3670x2462.jpg';
+import mainimage from '../assets/laptop-with-notebook-and-glasses-on-table.jpg';
 import icon from '../assets/tw.png'
 import cryptoRandomString from "crypto-random-string";
 import EmailForm from "./EmailForm";
@@ -66,27 +66,25 @@ const MainForm = ({dataUser, setDataUser, setSenator, senator, mp, setMp, setEma
 
         <div className={'container'} style={{justifyContent: 'center', display: 'block'}}>
             <div>
-                <img style={{margin: '20px', maxHeight: '50px', maxWidth: '50px', height: '100%', width: '100px'}}
-                     src={icon}/>
+                {/*<img style={{margin: '20px', maxHeight: '50px', maxWidth: '50px', height: '100%', width: '100px'}}*/}
+                {/*     src={icon}/>*/}
             </div>
-            <Card className="bg-dark text-white">
-                <Card.Img style={{maxWidth: '1150px', maxHeight: '350px', height: '100%', width: '100%',}} src={mainimage}
-                     alt={'logo'}/>
+            <Card  style={{marginTop: '20px',}} className="bg-dark card-img text-white">
+                <Card.Img style={{maxWidth: '1150px', maxHeight: '350px', height: '100%', width: '100%'}} src={mainimage}
+                     alt={'header'}/>
                      <Card.ImgOverlay style={{backgroundColor:'rgba(0,0,0,0.3)'}}>
                          <Card.Body>
                          <Card.Text className={'text'} style={{fontWeight:'300px', textAlign:'center'}}>
-                                 Lorem ipsum dolor sit amet
+                                 Contact Your MP
                          </Card.Text>
                              <Card.Text className={'text2'} style={{fontWeight:'300px', textAlign:'center'}}>
-                                 facilisi quam amet
+                                Try Our Demo
                              </Card.Text>
                          </Card.Body>
                      </Card.ImgOverlay>
             </Card>
             <div className={'container'} style={{padding: '35px'}}>
-                Lorem ipsum dolor sit amet consectetur adipiscing elit habitant montes nibh id dictumst, facilisi quam
-                ullamcorper felis ante class eros tortor velit nisi. Facilisis conubia laoreet vestibulum nostra tempus
-                fusce sodales.
+                This is a demo built by Touch Point International to show the user experience for our "Contact Your MP" Portal. Start now by typing in your email and postcode.
             </div>
             <div style={{maxWidth: '1150px', width: '100%', backgroundColor: '#f4f4f4'}}>
                 <div hidden={showFindForm} className={'container'} style={{textAlign: 'center', padding: '30px'}}>
