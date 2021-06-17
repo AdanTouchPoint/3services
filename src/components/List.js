@@ -61,7 +61,7 @@ const List = ({mps, dataUser,  setEmailData,  setShowFindForm, setShowEmailForm}
                                 href={`tel:+61${mps.phone}`}
                                 target={"blank"}
                             >
-                                CALL IT
+                                CALL
                             </Button> :
                             <p>No Phone</p>
                     }
